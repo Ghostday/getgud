@@ -3,10 +3,6 @@ import React from "react"
 const cDragonChamps = 'https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/en_au/v1/champions/'
 
 class Masteries extends React.Component {
-    constructor(props) {
-        super(props)
-
-    }
 
 
     
@@ -20,11 +16,11 @@ class Masteries extends React.Component {
         
         this.props.data.forEach(element => {
             console.log(element)
+
             
         });
 
         console.log(championId)
-        
         return (
             <h1></h1>
         )
