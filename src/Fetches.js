@@ -1,19 +1,13 @@
 import APIKey from "./api"
 
+const fetchUrl = (region) => `https://${region}.api.riotgames.com/lol`
 
 
 const calls = {
-    fetchUrl: () => `https://oc1.api.riotgames.com/lol/summoner/v4/summoners/by-name/Ghostday?api_key=${APIKey}`,
-    fetchBySummonerName: (name) => {
-        fetch(`https://oc1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${name}?api_key=${APIKey}`)
-        .then(response => response.json())
-        .then(data => {
-            const name = data.name
-            console.log(data)
-            return name
-        })
-        .catch(error => console.error(error))
-    }
+    fetchBySummonerName: (region, name) => fetchUrl(region)+`/summoner/v4/summoners/by-name/${name}?api_key=${APIKey}`,
+    fetchMasteriesById: (region, id) => fetchUrl(region)+`/champion-mastery/v4/champion-masteries/by-summoner/${id}?api_key=${APIKey}`,
+    fetchLastMatches: (region, puuid) => fetchUrl(region)+`/match/v5/matches/by-puuid/${puuid}/ids`,
+    fetchMatchDetails: (region, matchId) => fetchUrl(region)+`/match/v5/matches/${matchId}`
 }
 
 export default calls
