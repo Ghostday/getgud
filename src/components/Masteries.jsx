@@ -1,8 +1,6 @@
 import React from "react"
-import { Card } from 'react-bootstrap'
 import championData from '../data/data/en_AU/champion.json'
-
-const cDragonChamps = 'https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/en_au/v1/champions/'
+import MasteryCard from './MasteryCard'
 
 class Masteries extends React.Component {
 
@@ -33,7 +31,7 @@ class Masteries extends React.Component {
 
 
         return (
-            <h1></h1>
+            <MasteryCard data={championArr[0]}/>
         )
 
     }
