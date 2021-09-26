@@ -16,12 +16,12 @@ class searchForm extends React.Component {
         this.setState({
             [name]: event.target.value
         });
-        console.log(this.state)
+        console.log('State is changing: ', this.state)
     }
 
     handleSubmit = (event) => {
         alert(`${this.state.sumName} on the ${this.state.server} server`);
-        console.log('Fetching Info for: ', this.state)
+        console.log('This ', this.state)
         event.preventDefault();
 
         const { getData } = this.props;

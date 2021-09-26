@@ -5,9 +5,8 @@ import MasteryCard from './MasteryCard'
 class Masteries extends React.Component {
 
 
-    
-    render() {
-
+    champArr() {
+        
         // Defining the variables to be used in the upcoming storage of Data
         const championArr = []
 
@@ -26,12 +25,21 @@ class Masteries extends React.Component {
             
             championArr.push(champ)
         });
+        console.log('champArr() being called')
+        return championArr
 
-        console.log('Champion Array: ',championArr)
+    }
+
+
+    
+    render() {
+
+        let champarray = this.champArr()
+        console.log('Champion Array: ', champarray)
 
 
         return (
-            <MasteryCard data={championArr[0]}/>
+            <MasteryCard data={champarray[36]}/>
         )
 
     }

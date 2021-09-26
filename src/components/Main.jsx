@@ -8,7 +8,7 @@ class Main extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            masteries: [],
+            masteries: undefined,
             matches: [],
         }
 
@@ -19,13 +19,13 @@ class Main extends React.Component {
 
 render() {
     const {name, summonerLevel, id, puuid} = this.props.stats
-    console.log(name)
+    console.log('Main Rendering: ', name)
 
     return (
         <div>
             <h1>{name}</h1>
             <h2>{summonerLevel}</h2>
-            <Masteries data={this.state.masteries} />
+            { this.state.masteries && <Masteries data={this.state.masteries} /> }
         </div>
     )
 
@@ -36,7 +36,7 @@ componentDidMount() {
     fetch(calls.fetchMasteriesById(this.props.region, this.props.stats.id))
     .then(response => response.json())
     .then(data => {
-        console.log(data)
+        console.log('componentDidMount being called: ', data)
         this.setState({
             masteries: data
         })
