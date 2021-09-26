@@ -19,7 +19,7 @@ class MasteryCard extends React.Component {
         console.log('After mounting: ', champ)
 
         const champImg = champ[1].image.full
-        const imgSrc = `../data/img/champion/${champImg}`
+        const imgSrc = require(`../data/img/champion/${champImg}`)
         
 
         const champName = champ[1].name
@@ -62,6 +62,7 @@ class MasteryCard extends React.Component {
             console.log(prog)
             return prog
         }
+        console.log(imgSrc)
 
 
 
@@ -72,7 +73,7 @@ class MasteryCard extends React.Component {
                     <h2>{champName}</h2>
                     <h5>{champTitle}</h5>
                 </Card.Header>
-                <Card.Img variant="top" src={image} />
+                <Card.Img variant="top" src={imgSrc} />
                 <Card.Body>
                     <Card.Title>Card Title</Card.Title>
                     <Card.Text>
