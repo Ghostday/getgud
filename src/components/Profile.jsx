@@ -15,6 +15,8 @@ export default function Profile(data) {
 
     const wins = rankedInfo.wins
     const losses = rankedInfo.losses
+    const winRate = (wins / (wins + losses)) * 100
+
     const inactive = rankedInfo.inactive
 
 
@@ -22,11 +24,26 @@ export default function Profile(data) {
     return (
         <Container id="profile">
             <Row>
-                <Col sm={8}>
+                <Col sm={8} style={{textAlign: 'left'}}>
                     <h1>{name}</h1>
-                </Col>
-                <Col sm={4}>
                     <h2>{lvl}</h2>
+
+                </Col>
+                <Col sm={2} style={{textAlign: 'left'}}>
+                    <h5>Queue Type</h5>
+                    <h5>Wins</h5>
+                    <h5>Losses</h5>
+                    <h5>Win Rate</h5>
+                </Col>
+                <Col sm={1}>
+                    <h5>{wins}</h5>
+                    <h5>{losses}</h5>
+                    <h5>{winRate}%</h5>
+                </Col>
+                <Col sm={1}>
+                    <h5>{wins}</h5>
+                    <h5>{losses}</h5>
+                    <h5>{winRate}%</h5>
                 </Col>
             </Row>
         </Container>

@@ -23,23 +23,18 @@ class MasteryCard extends React.Component {
         
 
         const champName = champ[1].name
-        console.log(champName)
 
         const champTitle = champ[1].title
-        console.log('Title: ', champTitle)
 
         //  If champ has multiple roles will join them with a seperator for a cleaner look
         const champRoles = champ[1].tags.join(" | ")
         
 
         const level = champ.championLevel
-        console.log('Level: ', level)
 
         const points = champ.championPoints
-        console.log('Mastery Point: ', points)
-        
+   
         const chest = champ.chestGranted
-        console.log('Chest Already Given: ', chest)
 
         const progress = () => {
             let prog = 0;

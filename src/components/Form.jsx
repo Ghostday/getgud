@@ -20,8 +20,7 @@ class searchForm extends React.Component {
     }
 
     handleSubmit = (event) => {
-        alert(`${this.state.sumName} on the ${this.state.server} server`);
-        console.log('This ', this.state)
+        console.log('handleSubmit()', event)
         event.preventDefault();
 
         const { getData } = this.props;
