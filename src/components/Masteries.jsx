@@ -1,6 +1,7 @@
 import React from "react"
 import championData from '../data/data/en_AU/champion.json'
 import MasteryCard from './MasteryCard'
+import { Card, CardGroup } from "react-bootstrap"
 
 class Masteries extends React.Component {
 
@@ -39,7 +40,12 @@ class Masteries extends React.Component {
 
 
         return (
-            <MasteryCard data={champarray[36]}/>
+            <CardGroup>
+            <MasteryCard data={champarray[28]}/>
+            <MasteryCard data={champarray[29]}/>
+            <MasteryCard data={champarray[30]}/>
+            <MasteryCard data={champarray[31]}/>
+            </CardGroup>
         )
 
     }

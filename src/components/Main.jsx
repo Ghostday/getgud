@@ -1,7 +1,7 @@
 import React from "react";
 import calls from "../Fetches";
 import Masteries from './Masteries'
-
+import Profile from './Profile'
 
 class Main extends React.Component {
 
@@ -23,8 +23,7 @@ render() {
 
     return (
         <div>
-            <h1>{name}</h1>
-            <h2>{summonerLevel}</h2>
+            <Profile data={this.props.profile} summ={summonerLevel}/>
             { this.state.masteries && <Masteries data={this.state.masteries} /> }
         </div>
     )

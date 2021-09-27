@@ -1,14 +1,16 @@
 import { useState } from 'react';
-import './App.css'
+import './App.css';
 import calls from './Fetches';
 import Main from './components/Main';
-import Form from './components/Form'
+import Form from './components/Form';
+
 
 
 function App() {
 
   const [stats, setStats] = useState(undefined)
   const [server, setServer] = useState(undefined)
+  const [profile, setProfile] = useState(undefined)
 
 
   const getData = (server, name) => {
@@ -19,8 +21,19 @@ function App() {
       .then(data => {
         console.log(data)
         setStats(data)
+        getProfile(server, data.id)
       })
       .catch(error => console.error(error))
+    }
+  
+  const getProfile = (server, id) => {
+    fetch(calls.fetchRankedDetails(server, id))
+      .then(response => response.json())
+      .then(data => {
+        console.log('getProfile called: ', data)
+        setProfile(data)
+      })
+
   }
 
 
@@ -28,8 +41,8 @@ function App() {
     <div className="App">
       <header className="App-header">
       <Form getData={getData}/>
-      { stats && <Main stats={stats} region={server}/> }
       </header>
+      { profile && <Main stats={stats} profile={profile} region={server}/> }
 
       
     </div>

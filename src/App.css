@@ -1,5 +1,13 @@
 .App {
   text-align: center;
+  background-color: #282c34;
+  min-height: 100vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
 }
 
 .App-logo {
@@ -15,7 +23,7 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 20vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,4 +53,13 @@
 .card-img {
   max-width: 10rem;
   max-height: 10rem;
+}
+
+.card {
+  margin: 5vh;
+}
+
+#profile {
+  border: white 4px;
+  background-color: black;
 }

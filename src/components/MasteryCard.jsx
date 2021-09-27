@@ -28,8 +28,9 @@ class MasteryCard extends React.Component {
         const champTitle = champ[1].title
         console.log('Title: ', champTitle)
 
-        const champRoles = champ[1].tags
-        console.log('Roles: ', champRoles)
+        //  If champ has multiple roles will join them with a seperator for a cleaner look
+        const champRoles = champ[1].tags.join(" | ")
+        
 
         const level = champ.championLevel
         console.log('Level: ', level)
@@ -42,25 +43,43 @@ class MasteryCard extends React.Component {
 
         const progress = () => {
             let prog = 0;
+            let label = 0;
             switch (level) {
                 case 7:
-                    prog = 100;
-                    break;
                 case 6:
-                    prog = 100;
-                    break;
                 case 5:
                     prog = 100;
+                    label = points;
                     break;
                 case 4:
                     prog = (points / 21600) * 100
-                    console.log('Case 4: ', prog)
+                    label = `${points} / 21600`
+                    console.log('Case 4')
+                    break;
+                case 3:
+                    prog = (points / 12600) * 100
+                    label = `${points} / 12600`
+                    console.log('Case 3')
+                    break;
+                case 2:
+                    prog = (points / 6000) * 100
+                    label = `${points} / 6000`
+                    console.log('Case 2')
+                    break;
+                case 1:
+                    prog = (points / 1800) * 100
+                    label = `${points} / 1800`
+                    console.log('Case 1')
                     break;
                 default:
                     break;
             }
             console.log(prog)
-            return prog
+            return (
+                <ProgressBar>
+                    <ProgressBar now={prog} label={label}/> 
+                </ProgressBar>
+            )
         }
         console.log(imgSrc)
 
@@ -75,15 +94,15 @@ class MasteryCard extends React.Component {
                 </Card.Header>
                 <Card.Img variant="top" src={imgSrc} />
                 <Card.Body>
-                    <Card.Title>Card Title</Card.Title>
+                    <Card.Title>{champRoles}</Card.Title>
                     <Card.Text>
                         Some quick example text to build on the card title and make up the bulk of
                         the card's content.
                     </Card.Text>
                 </Card.Body>
                 <Card.Footer>
-                    
-                    <ProgressBar now={progress()}/>
+                    <p>{level}</p>
+                    {progress()}
                 </Card.Footer>
             </Card>
         )
