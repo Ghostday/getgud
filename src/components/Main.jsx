@@ -18,12 +18,12 @@ class Main extends React.Component {
 
 
 render() {
-    const {name, summonerLevel, id, puuid} = this.props.stats
+    const {name, summonerLevel, profileIconId, id, puuid} = this.props.stats
     console.log('Main Rendering: ', name)
 
     return (
         <div>
-            <Profile data={this.props.profile} summ={summonerLevel}/>
+            <Profile data={this.props.profile} icon={profileIconId} summ={summonerLevel}/>
             { this.state.masteries && <Masteries data={this.state.masteries} /> }
         </div>
     )

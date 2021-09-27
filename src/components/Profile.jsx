@@ -5,8 +5,12 @@ export default function Profile(data) {
     console.log('Profiles Data',data)
 
     const rankedInfo = data.data[0]
-    const lvl = data.summ
+    const rankedInfo2 = data.data[1]
 
+    const lvl = data.summ
+    const icon = `https://ddragon.leagueoflegends.com/cdn/11.19.1/img/profileicon/${data.icon}.png`
+
+    let queue = rankedInfo.queueType
     const name = rankedInfo.summonerName
     const streak = rankedInfo.hotStreak
     const lp = rankedInfo.leaguePoints
@@ -17,17 +21,36 @@ export default function Profile(data) {
     const losses = rankedInfo.losses
     const winRate = (wins / (wins + losses)) * 100
 
-    const inactive = rankedInfo.inactive
+    let queue2 = rankedInfo2.queueType
+    const name2 = rankedInfo2.summonerName
+    const streak2 = rankedInfo2.hotStreak
+    const lp2 = rankedInfo2.leaguePoints
+    const rank2 = rankedInfo2.rank
+    const tier2 = rankedInfo2.tier
 
+    const wins2 = rankedInfo2.wins
+    const losses2 = rankedInfo2.losses
+    const winRate2 = (wins2 / (wins2 + losses2)) * 100
+
+    if (queue === "RANKED_SOLO_5x5") {
+        queue = "Solo/Duo";
+        queue2 = "Flex";
+    }
+    else {
+        queue = "Flex";
+        queue2 = "Solo/Duo";
+    }
 
 
     return (
         <Container id="profile">
             <Row>
                 <Col sm={8} style={{textAlign: 'left'}}>
-                    <h1>{name}</h1>
-                    <h2>{lvl}</h2>
-
+                    <img alt="profile" id="profilePic" src={icon} style={{width: '180px', height: '180px'}}/>
+                    <div style={{float: 'right'}}>
+                        <h1>{name}</h1>
+                        <h2>{lvl}</h2>
+                    </div>
                 </Col>
                 <Col sm={2} style={{textAlign: 'left'}}>
                     <h5>Queue Type</h5>
@@ -36,14 +59,16 @@ export default function Profile(data) {
                     <h5>Win Rate</h5>
                 </Col>
                 <Col sm={1}>
+                    <h5>{queue}</h5>
                     <h5>{wins}</h5>
                     <h5>{losses}</h5>
-                    <h5>{winRate}%</h5>
+                    <h5>{winRate.toFixed(1)}%</h5>
                 </Col>
                 <Col sm={1}>
-                    <h5>{wins}</h5>
-                    <h5>{losses}</h5>
-                    <h5>{winRate}%</h5>
+                    <h5>{queue2}</h5>
+                    <h5>{wins2}</h5>
+                    <h5>{losses2}</h5>
+                    <h5>{winRate2.toFixed(1)}%</h5>
                 </Col>
             </Row>
         </Container>
