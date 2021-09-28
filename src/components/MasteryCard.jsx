@@ -2,7 +2,7 @@ import React from "react";
 import { Card, ProgressBar } from 'react-bootstrap'
 
 import masteryRank from './Champion_Mastery_Level_2_Flair.png'
-import '../index.css'
+import '../App.css'
 class MasteryCard extends React.Component {
 
     constructor(props) {

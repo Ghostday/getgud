@@ -21,6 +21,8 @@
   }
 }
 
+
+
 .App-header {
   background-color: #282c34;
   min-height: 20vh;
@@ -48,6 +50,8 @@
 
 .card-header {
   font-size: 1.5em;
+  border-bottom: none;
+
 }
 
 .card {
@@ -58,6 +62,7 @@
   max-width: 18rem;
   height: 509px;
   margin-bottom: 5em;
+  border-radius: 0.5em;
 }
 
 .card-group {
@@ -86,5 +91,5 @@
 }
 
 .masteryProg {
-  font-size: 2.2vw;
+  font-size: 1.8vw;
 }
