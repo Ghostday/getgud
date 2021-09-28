@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, ProgressBar } from 'react-bootstrap'
 
-import image from '../data/img/champion/Vayne.png'
+import masteryRank from './Champion_Mastery_Level_2_Flair.png'
 
 class MasteryCard extends React.Component {
 
@@ -18,8 +18,7 @@ class MasteryCard extends React.Component {
 
         console.log('After mounting: ', champ)
 
-        const champImg = champ[1].image.full
-        const imgSrc = require(`../data/img/champion/${champImg}`)
+        const champImg = `${champ[0]}_0.jpg`
         
 
         const champName = champ[1].name
@@ -71,28 +70,28 @@ class MasteryCard extends React.Component {
             }
             console.log(prog)
             return (
-                <ProgressBar>
-                    <ProgressBar now={prog} label={label}/> 
-                </ProgressBar>
+                <div>
+                    <img className="masteryRank" src={masteryRank}/>
+                    <ProgressBar>
+                        <ProgressBar now={prog} label={label}/> 
+                    </ProgressBar>
+                </div>
             )
         }
-        console.log(imgSrc)
 
 
 
 
         return (
-            <Card style={{ width: '18rem' }} bg="dark">
+            <Card style={{ width: '18rem', backgroundImage: `url(https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champImg})`}} bg="dark">
                 <Card.Header>
                     <h2>{champName}</h2>
                     <h5>{champTitle}</h5>
                 </Card.Header>
-                <Card.Img variant="top" src={imgSrc} />
                 <Card.Body>
                     <Card.Title>{champRoles}</Card.Title>
                     <Card.Text>
-                        Some quick example text to build on the card title and make up the bulk of
-                        the card's content.
+
                     </Card.Text>
                 </Card.Body>
                 <Card.Footer>

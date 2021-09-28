@@ -50,13 +50,21 @@
   font-size: 1.5rem;
 }
 
-.card-img {
-  max-width: 10rem;
-  max-height: 10rem;
-}
-
 .card {
   margin: 5vh;
+  background-position: center;
+  opacity: 1;
+  color: rgb(100, 100, 100, 0.0);
+  max-width: 18rem;
+  height: 509px;
+  
+}
+
+.card:hover {
+  opacity: 1;
+  color: rgb(255, 255, 255);
+  background-blend-mode:overlay;
+
 }
 
 #profile {
@@ -65,4 +73,9 @@
 
 #profilePic {
   margin: 10px 10px 10px 1px;
+}
+
+.masteryRank {
+  max-width: 200px;
+  max-height: 200px;
 }

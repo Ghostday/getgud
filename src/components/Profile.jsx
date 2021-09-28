@@ -45,9 +45,11 @@ export default function Profile(data) {
     return (
         <Container id="profile">
             <Row>
-                <Col sm={8} style={{textAlign: 'left'}}>
+                <Col sm={2} style={{textAlign: 'left'}}>
                     <img alt="profile" id="profilePic" src={icon} style={{width: '180px', height: '180px'}}/>
-                    <div style={{float: 'right'}}>
+                </Col>
+                <Col sm={5} style={{textAlign: 'left'}}>
+                    <div style={{float: 'left'}}>
                         <h1>{name}</h1>
                         <h2>{lvl}</h2>
                     </div>
@@ -60,14 +62,14 @@ export default function Profile(data) {
                 </Col>
                 <Col sm={1}>
                     <h5>{queue}</h5>
-                    <h5>{wins}</h5>
-                    <h5>{losses}</h5>
+                    <h5 style={{color: 'green'}}>{wins}</h5>
+                    <h5 style={{color: 'red'}}>{losses}</h5>
                     <h5>{winRate.toFixed(1)}%</h5>
                 </Col>
                 <Col sm={1}>
                     <h5>{queue2}</h5>
-                    <h5>{wins2}</h5>
-                    <h5>{losses2}</h5>
+                    <h5 style={{color: 'green'}}>{wins2}</h5>
+                    <h5 style={{color: 'red'}}>{losses2}</h5>
                     <h5>{winRate2.toFixed(1)}%</h5>
                 </Col>
             </Row>
