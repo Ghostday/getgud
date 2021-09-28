@@ -2,7 +2,7 @@ import React from "react";
 import { Card, ProgressBar } from 'react-bootstrap'
 
 import masteryRank from './Champion_Mastery_Level_2_Flair.png'
-
+import '../index.css'
 class MasteryCard extends React.Component {
 
     constructor(props) {
@@ -71,9 +71,10 @@ class MasteryCard extends React.Component {
             console.log(prog)
             return (
                 <div>
-                    <img className="masteryRank" src={masteryRank}/>
+                    <img className="masteryRank"  alt="masteryRankImg" src={masteryRank}/>
+                    <p className="masteryProg">{label}</p>
                     <ProgressBar>
-                        <ProgressBar now={prog} label={label}/> 
+                        <ProgressBar now={prog}/> 
                     </ProgressBar>
                 </div>
             )
@@ -94,10 +95,7 @@ class MasteryCard extends React.Component {
 
                     </Card.Text>
                 </Card.Body>
-                <Card.Footer>
-                    <p>{level}</p>
                     {progress()}
-                </Card.Footer>
             </Card>
         )
     }

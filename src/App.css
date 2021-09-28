@@ -47,23 +47,27 @@
 
 
 .card-header {
-  font-size: 1.5rem;
+  font-size: 1.5em;
 }
 
 .card {
-  margin: 5vh;
+  margin: 5vw;
   background-position: center;
   opacity: 1;
   color: rgb(100, 100, 100, 0.0);
   max-width: 18rem;
   height: 509px;
-  
+  margin-bottom: 5em;
+}
+
+.card-group {
+  margin-bottom: 3vh;
 }
 
 .card:hover {
   opacity: 1;
   color: rgb(255, 255, 255);
-  background-blend-mode:overlay;
+  background-blend-mode:  overlay;
 
 }
 
@@ -78,4 +82,9 @@
 .masteryRank {
   max-width: 200px;
   max-height: 200px;
+  margin: -3.5vh;
+}
+
+.masteryProg {
+  font-size: 2.2vw;
 }
