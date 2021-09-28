@@ -48,14 +48,14 @@
 }
 
 
-.card-header {
+.mastery-header {
   font-size: 1.5em;
   border-bottom: none;
 
 }
 
 .card {
-  margin: 5vw;
+  margin: 2vw;
   background-position: center;
   opacity: 1;
   color: rgb(100, 100, 100, 0.0);
@@ -73,23 +73,32 @@
   opacity: 1;
   color: rgb(255, 255, 255);
   background-blend-mode:  overlay;
+  box-shadow: 0px 0px 7px 5px;
 
 }
 
+.btn-group {
+  padding: 5vh;
+}
+
 #profile {
-  border: 1px solid greenyellow;
+  box-shadow: -1px 0px 17px 0px;
+  font-size: 2vw;
+  border-radius: 20px;
 }
 
 #profilePic {
   margin: 10px 10px 10px 1px;
+  border-radius: 11%;
 }
 
 .masteryRank {
   max-width: 200px;
   max-height: 200px;
-  margin: -3.5vh;
+  margin: -1.5vh;
 }
 
 .masteryProg {
   font-size: 1.8vw;
+  margin-bottom: 1px;
 }

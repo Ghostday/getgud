@@ -48,26 +48,28 @@ export default function Profile(data) {
                 <Col sm={2} style={{textAlign: 'left'}}>
                     <img alt="profile" id="profilePic" src={icon} style={{width: '180px', height: '180px'}}/>
                 </Col>
-                <Col sm={5} style={{textAlign: 'left'}}>
+                <Col sm={4} style={{textAlign: 'left', padding: '1vh 2vh'}}>
                     <div style={{float: 'left'}}>
                         <h1>{name}</h1>
                         <h2>{lvl}</h2>
                     </div>
                 </Col>
-                <Col sm={2} style={{textAlign: 'left'}}>
-                    <h5>Queue Type</h5>
+                <Col sm={2} style={{textAlign: 'left', paddingTop: '4.3vh'}}>
+                    <br />
                     <h5>Wins</h5>
                     <h5>Losses</h5>
                     <h5>Win Rate</h5>
                 </Col>
-                <Col sm={1}>
+                <Col sm={2} style={{padding: '2vh 2vh'}}>
                     <h5>{queue}</h5>
+                    <h5>{tier + ' ' + rank}</h5>
                     <h5 style={{color: 'green'}}>{wins}</h5>
                     <h5 style={{color: 'red'}}>{losses}</h5>
                     <h5>{winRate.toFixed(1)}%</h5>
                 </Col>
-                <Col sm={1}>
+                <Col sm={2} style={{padding: '2vh 2vh'}}>
                     <h5>{queue2}</h5>
+                    <h5>{tier2 + ' ' + rank2}</h5>
                     <h5 style={{color: 'green'}}>{wins2}</h5>
                     <h5 style={{color: 'red'}}>{losses2}</h5>
                     <h5>{winRate2.toFixed(1)}%</h5>

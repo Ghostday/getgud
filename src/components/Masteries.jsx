@@ -31,6 +31,15 @@ class Masteries extends React.Component {
 
     }
 
+    champs(arr) {
+        
+
+
+        const champs = arr.map((champ, index) => {
+            return <MasteryCard data={champ}/>
+        })
+        return champs
+    }
 
     
     render() {
@@ -40,12 +49,17 @@ class Masteries extends React.Component {
 
 
         return (
+        <div>
             <CardGroup>
-            <MasteryCard data={champarray[28]}/>
-            <MasteryCard data={champarray[29]}/>
-            <MasteryCard data={champarray[30]}/>
-            <MasteryCard data={champarray[31]}/>
+                <MasteryCard data={champarray[1]}/>
+                <MasteryCard data={champarray[3]}/>
+                <MasteryCard data={champarray[0]}/>
+                <MasteryCard data={champarray[4]}/>
             </CardGroup>
+           
+                {this.champs(champarray)}
+
+        </div>
         )
 
     }

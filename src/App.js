@@ -44,7 +44,7 @@ function App() {
       </header>
       { profile && <Main stats={stats} profile={profile} region={server}/> }
 
-      
+      <footer></footer>
     </div>
   );
 }
