@@ -47,6 +47,7 @@ class Masteries extends React.Component {
         let champarray = this.champArr()
         console.log('Champion Array: ', champarray)
 
+        // TODO: Make a CardGroup component that Maps the array in groups
 
         return (
         <div>

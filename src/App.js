@@ -11,6 +11,7 @@ function App() {
   const [stats, setStats] = useState(undefined)
   const [server, setServer] = useState(undefined)
   const [profile, setProfile] = useState(undefined)
+  const [matches, setMatches] = useState(undefined)
 
 
   const getData = (server, name) => {
@@ -22,9 +23,10 @@ function App() {
         console.log(data)
         setStats(data)
         getProfile(server, data.id)
+        getMatchHistory("americas", data.puuid)
       })
       .catch(error => console.error(error))
-    }
+  }
   
   const getProfile = (server, id) => {
     fetch(calls.fetchRankedDetails(server, id))
@@ -33,16 +35,25 @@ function App() {
         console.log('getProfile called: ', data)
         setProfile(data)
       })
-
+      .catch(error => console.error(error))
   }
 
+  const getMatchHistory = (server, puuid) => {
+    fetch(calls.fetchLastMatches(server, puuid))
+      .then(response => response.json())
+      .then(data => {
+        console.log('getMatchHistory called: ', data)
+        setMatches(data)
+      })
+      .catch(error => console.error(error))
+  }
 
   return (
     <div className="App">
       <header className="App-header">
       <Form getData={getData}/>
       </header>
-      { profile && <Main stats={stats} profile={profile} region={server}/> }
+      { profile && <Main stats={stats} profile={profile} matches={matches} region={server}/> }
 
       <footer></footer>
     </div>

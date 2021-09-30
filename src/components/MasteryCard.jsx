@@ -35,10 +35,6 @@ class MasteryCard extends React.Component {
 
         //  If champ has multiple roles will join them with a seperator for a cleaner look
         const champRoles = champ[1].tags.join(" | ")
-        
-        // const masteryIcon = (num) => {
-        //     return 'masteryRank'+num
-        // }
 
 
         const points = champ.championPoints
@@ -74,30 +70,25 @@ class MasteryCard extends React.Component {
                     prog = (points / 21600) * 100
                     label = `${points} / 21600`
                     masteryIcon = masteryRank4
-                    console.log('Case 4')
                     break;
                 case 3:
                     prog = (points / 12600) * 100
                     label = `${points} / 12600`
                     masteryIcon = masteryRank3
-                    console.log('Case 3')
                     break;
                 case 2:
                     prog = (points / 6000) * 100
                     label = `${points} / 6000`
                     masteryIcon = masteryRank2
-                    console.log('Case 2')
                     break;
                 case 1:
                     prog = (points / 1800) * 100
                     label = `${points} / 1800`
                     masteryIcon = masteryRank1
-                    console.log('Case 1')
                     break;
                 default:
                     break;
             }
-            console.log(prog)
             return (
                 <div>
                     <img className="masteryRank"  alt="masteryRankImg" src={masteryIcon}/>
