@@ -7,8 +7,8 @@ import masteryRank4 from './masteryImg/Champion_Mastery_Level_4_Flair.png'
 import masteryRank5 from './masteryImg/Champion_Mastery_Level_5_Flair.png'
 import masteryRank6 from './masteryImg/Champion_Mastery_Level_6_Flair.png'
 import masteryRank7 from './masteryImg/Champion_Mastery_Level_7_Flair.png'
-import image from '../data/img/champion/Aatrox.png'
 import '../App.css'
+
 class MasteryCard extends React.Component {
 
     constructor(props) {

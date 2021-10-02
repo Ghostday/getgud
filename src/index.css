@@ -19,8 +19,40 @@ p {
 
 .redBorder {
   border: 2px solid red;
+  border-radius: 0.5em;
 }
 
 .greenBorder {
   border: 2px solid green;
+  border-radius: 0.5em;
+}
+
+.card {
+  margin: 2vw;
+  background-position: center;
+  opacity: 1;
+  color: rgb(100, 100, 100, 0.0);
+  max-width: 18rem;
+  height: 509px;
+  margin-bottom: 5em;
+}
+
+.card-header {
+  background-color: rgba(0, 0, 0, 0);
+  border-bottom: none;
+}
+
+.card-group>.card+.card {
+  border-radius: 0.5em;
+  border-left: initial;
+}
+
+.card-group>.card:not(:first-child) {
+  border-top-left-radius: 0.5em;
+  border-bottom-left-radius: 0.5em;
+}
+
+.card-group>.card:not(:last-child) {
+  border-top-right-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
 }

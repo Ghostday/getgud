@@ -53,7 +53,9 @@ function App() {
       <header className="App-header">
       <Form getData={getData}/>
       </header>
-      { profile && <Main stats={stats} profile={profile} matches={matches} region={server}/> }
+      { matches &&
+        <Main stats={stats} profile={profile} matches={matches} region={server}/> 
+      }
 
       <footer></footer>
     </div>
