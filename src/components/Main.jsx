@@ -35,7 +35,7 @@ render() {
                 <Button variant="outline-primary">Match History</Button>
             </ButtonGroup>
             { this.state.masteries && <Masteries data={this.state.masteries} /> }
-            { this.props.matches && <Matches data={this.props.matches} /> }
+            { this.props.matches && <Matches data={this.props.matches} user={this.props.stats} /> }
         </Account.Provider>
     )
 

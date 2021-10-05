@@ -4,18 +4,31 @@ import { useState } from "react";
 import MatchInfo from './MatchInfo';
 
 
-export default function Matches({data}) {
+export default function Matches({data, user}) {
 
     let [matchHistory, setMatchHistory] = useState(undefined)
 
     const matches = data
+    const curUser = user
+    console.log('Matches.jsx | User: ', curUser)
     console.log('Matches.jsx | Match Info: ', matches)
+
+    function compare(a, b) {
+        if ( a.individualPosition < b.individualPosition ){
+          return -1;
+        }
+        if ( a.individualPosition > b.individualPosition ){
+          return 1;
+        }
+        return 0;
+      }
+    
 
     const makeMatchCard = (input) => {
         const data = input.info
         const matchId = input.metadata.matchId
 
-        const queue = ((input) => {
+        let queue = ((input) => {
             if (input === 420) {
                 return '5v5 Ranked Solo/Duo'
             }
@@ -51,7 +64,7 @@ export default function Matches({data}) {
             }
         })(data.queueId)
 
-        const map = ((input) => {
+        let map = ((input) => {
             if (input === 11) {
                 return `Summoner's Rift`
             }
@@ -63,18 +76,36 @@ export default function Matches({data}) {
             }
         })(data.mapId)
         
+
+
         let matchDate = new Date(data.gameStartTimestamp)
         let matchLength = data.gameDuration
-        let players = data.participants
+
+
+        let teams = ((input) => {
+            let positions = input.sort(compare)
+            let blueTeam = positions.filter(a => {
+                return a.teamId === 100
+            })
+
+            let redTeam = positions.filter(a => {
+                return a.teamId === 200
+            })
+
+            return [blueTeam, redTeam]
+        })(data.participants)
+        console.log('Matches.jsx | Teams: ',teams)
 
         let cardInfo = {
+            key: matchId,
             date: matchDate,
             length: matchLength,
             type: [queue, map],
+            players: teams,
 
         }
 
-        return <MatchInfo data={cardInfo}/>
+        // return <MatchInfo data={cardInfo}/>
 
     }
 
@@ -89,7 +120,7 @@ export default function Matches({data}) {
 
      console.log('rendering')
 
-
+    fetchData(matches[0])
 
     return (
         <div>
