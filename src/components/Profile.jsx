@@ -7,30 +7,30 @@ export default function Profile(data) {
     const rankedInfo = data.data[0]
     const rankedInfo2 = data.data[1]
 
-    const lvl = data.summ
+    const lvl = data.summ;
     const icon = `https://ddragon.leagueoflegends.com/cdn/11.19.1/img/profileicon/${data.icon}.png`
 
-    let queue = rankedInfo.queueType
-    const name = rankedInfo.summonerName
-    const streak = rankedInfo.hotStreak
-    const lp = rankedInfo.leaguePoints
-    const rank = rankedInfo.rank
-    const tier = rankedInfo.tier
+    let queue = rankedInfo.queueType;
+    const name = rankedInfo.summonerName;
+    const streak = rankedInfo.hotStreak;
+    const lp = rankedInfo.leaguePoints;
+    const rank = rankedInfo.rank;
+    const tier = rankedInfo.tier;
 
-    const wins = rankedInfo.wins
-    const losses = rankedInfo.losses
-    const winRate = (wins / (wins + losses)) * 100
+    const wins = rankedInfo.wins;
+    const losses = rankedInfo.losses;
+    const winRate = (wins / (wins + losses)) * 100;
 
-    let queue2 = rankedInfo2.queueType
-    const name2 = rankedInfo2.summonerName
-    const streak2 = rankedInfo2.hotStreak
-    const lp2 = rankedInfo2.leaguePoints
-    const rank2 = rankedInfo2.rank
-    const tier2 = rankedInfo2.tier
+    let queue2 = rankedInfo2.queueType;
+    const name2 = rankedInfo2.summonerName;
+    const streak2 = rankedInfo2.hotStreak;
+    const lp2 = rankedInfo2.leaguePoints;
+    const rank2 = rankedInfo2.rank;
+    const tier2 = rankedInfo2.tier;
 
-    const wins2 = rankedInfo2.wins
-    const losses2 = rankedInfo2.losses
-    const winRate2 = (wins2 / (wins2 + losses2)) * 100
+    const wins2 = rankedInfo2.wins;
+    const losses2 = rankedInfo2.losses;
+    const winRate2 = (wins2 / (wins2 + losses2)) * 100;
 
     if (queue === "RANKED_SOLO_5x5") {
         queue = "Solo/Duo";

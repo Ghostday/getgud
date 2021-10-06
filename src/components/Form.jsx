@@ -16,7 +16,6 @@ class searchForm extends React.Component {
         this.setState({
             [name]: event.target.value
         });
-        console.log('State is changing: ', this.state)
     }
 
     handleSubmit = (event) => {

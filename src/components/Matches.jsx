@@ -14,14 +14,14 @@ export default function Matches({data, user}) {
     console.log('Matches.jsx | Match Info: ', matches)
 
     function compare(a, b) {
-        if ( a.individualPosition < b.individualPosition ){
+        if (a.individualPosition < b.individualPosition) {
           return -1;
         }
-        if ( a.individualPosition > b.individualPosition ){
+        if (a.individualPosition > b.individualPosition) {
           return 1;
         }
         return 0;
-      }
+    }
     
 
     const makeMatchCard = (input) => {

@@ -1,5 +1,4 @@
 import React, {useContext} from "react";
-import { Button, ButtonGroup } from "react-bootstrap";
 import calls from "../Fetches";
 import Masteries from './Masteries'
 import Profile from './Profile'
@@ -30,10 +29,6 @@ render() {
     return (
         <Account.Provider value={this.props.data} >
             <Profile data={this.props.profile} icon={profileIconId} summ={summonerLevel}/>
-            <ButtonGroup>
-                <Button variant="outline-primary">Masteries</Button>
-                <Button variant="outline-primary">Match History</Button>
-            </ButtonGroup>
             { this.state.masteries && <Masteries data={this.state.masteries} /> }
             { this.props.matches && <Matches data={this.props.matches} user={this.props.stats} /> }
         </Account.Provider>
