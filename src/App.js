@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import './App.css';
 import calls from './Fetches';
-import Main from './components/Main';
 import Form from './components/Form';
 import Profile from './components/Profile';
 import Masteries from './components/Masteries';
