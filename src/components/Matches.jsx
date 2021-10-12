@@ -2,7 +2,7 @@ import React from "react";
 import Fetches from '../Fetches';
 import { Table } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import MatchInfo from './MatchInfo';
+import MatchCard from './MatchCard';
 
 
 export default function Matches({data, user}) {
@@ -24,6 +24,7 @@ export default function Matches({data, user}) {
 
     return (
         <div>
+            <MatchCard match={matches[0]}/>
             <h2>Fetching</h2>
             <Table striped bordered hover variant="dark">
                 <thead>
@@ -35,12 +36,6 @@ export default function Matches({data, user}) {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>2</td>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
                     <tr>
                         <td>3</td>
                         <td colSpan="2">Larry the Bird</td>

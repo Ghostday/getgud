@@ -3,7 +3,7 @@ import Fetches from '../Fetches'
 import { useState, useEffect } from "react";
 
 
-export default function MatchHistory({match, key}) {
+export default function MatchCard({match, key}) {
 
     const [matchInfo, setMatchInfo] = useState(undefined)
     
@@ -95,27 +95,33 @@ export default function MatchHistory({match, key}) {
 
         }
 
-        setMatchInfo(cardInfo)
+        return (
+        <tr>
+            <td>{matchId}</td>
+            <td>{matchLength}</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+        </tr>
+        )
 
     }
 
     useEffect(() => {
+        if (!matchInfo) {
         fetch(Fetches.fetchMatchDetails('americas', match))
         .then(response => response.json())
         .then(data => {               
             console.log('Fetched Match Details: ', data)
-            makeMatchCard(data)
+            setMatchInfo(data)
             })
-        }
-    )
+        }    
+    })
 
     return (
-        <tr>
-            <td>{key}</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
+        <div>
+        {matchInfo && makeMatchCard(matchInfo)}
+        <h1>Yo</h1>
+        </div>
+        
     )
-
 }
