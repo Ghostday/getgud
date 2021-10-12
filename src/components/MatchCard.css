@@ -1,0 +1,21 @@
+.cardChampIcon>img {
+    width: 65px;
+    margin: -8px;
+    padding: 1px;
+    overflow: hidden;
+}
+
+.dateInfo {
+    padding: 0px;
+    font-size: 70%;
+}
+
+.timeInfo {
+    padding: 0px;
+    font-size: 45%;
+}
+
+.matchIdInfo {
+    font-size: 0.6rem;
+    line-height: 0.5em;
+}

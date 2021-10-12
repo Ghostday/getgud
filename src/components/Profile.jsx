@@ -12,7 +12,6 @@ export default function Profile(data) {
 
     let queue = rankedInfo.queueType;
     const name = rankedInfo.summonerName;
-    const streak = rankedInfo.hotStreak;
     const lp = rankedInfo.leaguePoints;
     const rank = rankedInfo.rank;
     const tier = rankedInfo.tier;

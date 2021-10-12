@@ -101,7 +101,7 @@ class MasteryCard extends React.Component {
         }
 
         return (    
-            <Card className={chest()} style={{ width: '18rem', backgroundImage: `url(https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champImg}`}} bg="dark">
+            <Card className={chest()} style={{ width: '18rem', backgroundImage: `url(https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champImg}`}} >
                 <Card.Header className="mastery-header">
                     <h2>{champName}</h2>
                     <h5>{champTitle}</h5>

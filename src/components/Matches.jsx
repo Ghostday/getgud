@@ -1,18 +1,12 @@
 import React from "react";
-import Fetches from '../Fetches';
 import { Table } from "react-bootstrap";
-import { useState, useEffect } from "react";
 import MatchCard from './MatchCard';
+import 'bootstrap/js/src/collapse.js'
 
 
 export default function Matches({data, user}) {
 
     const matches = data
-
-
-
-    const curUser = user
-    console.log('Matches.jsx | User: ', curUser)
     console.log('Matches.jsx | Match Info: ', matches)
 
 
@@ -21,29 +15,11 @@ export default function Matches({data, user}) {
 
 
 
-
     return (
-        <div>
-            <MatchCard match={matches[0]}/>
-            <h2>Fetching</h2>
-            <Table striped bordered hover variant="dark">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Username</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>3</td>
-                        <td colSpan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                </tbody>
-            </Table>
-        </div>
+        <Table className='matchHistory'>
+            <MatchCard match={matches[0]} user={user}/>
+            <MatchCard match={matches[1]} user={user}/>
+        </Table>
     )
 
     
