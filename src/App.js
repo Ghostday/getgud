@@ -26,18 +26,18 @@ function App() {
                 console.log(data)
                 setStats(data)
                 getMasteries(server, data.id)
-                getProfile(server, data.id)
-                getMatchHistory("americas", data.puuid)
+                getProfile(server, data)
             })
             .catch(error => console.error(error))
     }
 
-    const getProfile = (server, id) => {
-        fetch(calls.fetchRankedDetails(server, id))
+    const getProfile = (server, call) => {
+        fetch(calls.fetchRankedDetails(server, call.id))
             .then(response => response.json())
             .then(data => {
                 console.log('getProfile called: ', data)
                 setProfile(data)
+                getMatchHistory("americas", call.puuid)
             })
             .catch(error => console.error(error))
     }
@@ -69,7 +69,7 @@ function App() {
             </header>
             {profile && <Profile data={profile} icon={stats.profileIconId} summ={stats.summonerLevel} /> }
             {masteries && <Masteries data={masteries} /> }
-            {matches && <Matches data={matches} user={stats} />}
+            {matches && <Matches data={matches} user={stats} rank={profile} />}
 
             <footer></footer>
         </div>

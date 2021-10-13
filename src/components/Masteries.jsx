@@ -48,12 +48,17 @@ class Masteries extends React.Component {
         return (
         <div>
             <CardGroup>
-                <MasteryCard data={champarray[1]}/>
-                <MasteryCard data={champarray[3]}/>
                 <MasteryCard data={champarray[0]}/>
-                <MasteryCard data={champarray[4]}/>
+                <MasteryCard data={champarray[1]}/>
+                <MasteryCard data={champarray[2]}/>
+                <MasteryCard data={champarray[3]}/>
             </CardGroup>
-           
+            <CardGroup>
+                <MasteryCard data={champarray[4]}/>
+                <MasteryCard data={champarray[5]}/>
+                <MasteryCard data={champarray[6]}/>
+                <MasteryCard data={champarray[7]}/>
+            </CardGroup>
                 {/* {this.champs(champarray)} */}
 
         </div>

@@ -4,21 +4,18 @@ import MatchCard from './MatchCard';
 import 'bootstrap/js/src/collapse.js'
 
 
-export default function Matches({data, user}) {
+export default function Matches({data, user, rank}) {
 
     const matches = data
     console.log('Matches.jsx | Match Info: ', matches)
-
-
     
-
-
 
 
     return (
         <Table className='matchHistory'>
-            <MatchCard match={matches[0]} user={user}/>
-            <MatchCard match={matches[1]} user={user}/>
+            {matches.map((match, key) => {
+                return <MatchCard match={match} rank={rank} user={user} key={key} />
+            })}
         </Table>
     )
 

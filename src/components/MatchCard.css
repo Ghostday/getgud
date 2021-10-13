@@ -19,3 +19,17 @@
     font-size: 0.6rem;
     line-height: 0.5em;
 }
+
+.playerGold {
+    color: gold;
+    font-size: 0.9rem;
+}
+
+.matchQueueType {
+    font-size: 0.8rem;
+    text-align: right;
+}
+
+.matchMap {
+    font-size: 0.5rem;
+}

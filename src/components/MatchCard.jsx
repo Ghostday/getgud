@@ -1,11 +1,11 @@
 import React from "react";
 import Fetches from '../Fetches'
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { OverlayTrigger, Button, Tooltip } from "react-bootstrap";
 import './MatchCard.css'
 
 
-
-export default function MatchCard({match, key, user}) {
+export default function MatchCard({match, key, user, rank}) {
 
     const [matchInfo, setMatchInfo] = useState(undefined)
     
@@ -40,16 +40,19 @@ export default function MatchCard({match, key, user}) {
         //Javascript MAP/Object
         let queue = ((input) => {
             if (input === 420) {
-                return '5v5 Ranked Solo/Duo'
+                return 'Ranked Solo/Duo'
+            }
+            else if (input === 400) {
+                return 'Draft Pick'
             }
             else if (input === 325) {
                 return 'All Random Game'
             }
             else if (input === 430) {
-                return '5v5 Blind Pick'
+                return 'Blind Pick'
             }
             else if (input === 440) {
-                return '5v5 Ranked Flex'
+                return 'Ranked Flex'
             }
             else if (input === 450) {
                 return '5v5 ARAM'
@@ -108,25 +111,44 @@ export default function MatchCard({match, key, user}) {
         }
 
         let matchLength = secondsToHms(data.gameDuration)
-        console.log('matchLength: ', matchLength)
 
         let teams = ((input) => {
             let positions = input.sort(comparedPositions)
             let blueTeam = positions.filter(a => {
                 return a.teamId === 100
             })
-
             let redTeam = positions.filter(a => {
                 return a.teamId === 200
             })
-
-            return [blueTeam, redTeam]
+            blueTeam.kills = blueTeam.reduce((acc, val) => {
+                return acc + val.kills
+            }, 0)
+            redTeam.kills = blueTeam.reduce((acc, val) => {
+                return acc + val.kills
+            }, 0)
+            return {blueTeam, redTeam}
         })(data.participants)
 
         let curPlayer = data.participants.find(value => {
             return value.summonerName === user.name
         })
+
         console.log('Current Player: ', curPlayer)
+        const playerGold = curPlayer.goldEarned
+        const playerGoldPercent = (() => {
+            if (curPlayer.teamId === 100) {
+                let teamGold = teams.blueTeam.reduce((acc, val) => {
+                    return acc + val.goldEarned
+                }, 0)
+                return ((playerGold / teamGold) * 100).toFixed(2) + '%'
+            }
+            else {
+                let teamGold = teams.redTeam.reduce((acc, val) => {
+                    return acc + val.goldEarned
+                }, 0)
+                return ((playerGold / teamGold) * 100).toFixed(2) + '%'
+            }
+        })()
 
         const cardChampIcon = () => {
             let link = `https://ddragon.leagueoflegends.com/cdn/11.19.1/img/champion/${curPlayer.championName}.png`
@@ -135,9 +157,46 @@ export default function MatchCard({match, key, user}) {
             )
         }
 
+        const cardChampPosition = () => {
+            let link = `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ranked/positions/`
+        }
         const playerKDA = ((input) => {
             return `${input.kills}/${input.deaths}/${input.assists}`
         })(curPlayer)
+
+        const curPlayerKP = ((input) => {
+            let team;
+            if (input.teamId === 100) {team = teams.blueTeam}
+            else {team = teams.redTeam}
+            let kp = (input.kills + input.assists) / team.kills * 100
+            kp = kp.toFixed(2) + '%'
+            return kp
+        })(curPlayer)
+
+        const curPlayerStats = () => {
+            return (
+                <td>
+                <OverlayTrigger
+                    key={matchId + 'kda'}
+                    placement={"top"}
+                    overlay={
+                        <Tooltip id={`tooltip-${matchId + 'kda'}`}>
+                            <div className='playerKp'>You participated in {curPlayerKP} of the action!</div>
+                        </Tooltip>}>
+                    <div className='playerKda'>{playerKDA}</div>
+                </OverlayTrigger>
+                <OverlayTrigger
+                    key={matchId + 'gold'}
+                    placement={"bottom"}
+                    overlay={
+                        <Tooltip id={`tooltip-${matchId + 'gold'}`}>
+                            <div className='playerGoldPercent'>You had {playerGoldPercent} of all the team's gold.</div>
+                        </Tooltip>}>
+                    <div className='playerGold'>{playerGold}g</div>
+                </OverlayTrigger>
+                </td>
+            )
+        }
 
         let topDeets = () => {
             return (
@@ -148,19 +207,22 @@ export default function MatchCard({match, key, user}) {
                     <div className='dateInfo'>{matchDate()}</div>
                     <div className='timeInfo'>{matchLength}</div>
                 </td>
-                <td>{playerKDA}</td>
+                {curPlayerStats()}
                 <td>$150.00</td>
                 <td/>
-                <td>$150.00</td>
+                <td className="matchQueueType">
+                    <div>{queue}</div>
+                    <div className="text-muted">{map}</div>
+                </td>
             </tr>
         )}
         let expandedDeets = () => {
-            let deets = {
+        let deets = {
             matchId: matchId,
             length: matchLength,
             type: [queue, map],
-            players: teams,}
-
+            players: teams,
+        }
             return (
                 <tr className="collapse">
                     <div>
@@ -184,7 +246,7 @@ export default function MatchCard({match, key, user}) {
 
     return (
         <div>
-        {matchInfo && makeMatchCard(matchInfo)}
+        {matchInfo ? makeMatchCard(matchInfo):<td>Loading</td>}
         </div>
 
         
