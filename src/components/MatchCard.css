@@ -1,6 +1,22 @@
+.cardChampIcon {
+    width: 18%;
+    padding: 0px;
+}
+
+.table>:not(caption)>*>* {
+    padding: 0px;
+    background:rgba(70, 14, 87, 0.2);
+}
+
+.table>:not(caption):hover {
+    padding: 0px;
+    background:rgba(0, 0, 0, 0.795);
+}
+
+
+
 .cardChampIcon>img {
-    width: 65px;
-    margin: -8px;
+    /* margin: -8px -8px -8px -2.8vh; */
     padding: 1px;
     overflow: hidden;
 }
@@ -32,4 +48,40 @@
 
 .matchMap {
     font-size: 0.5rem;
+}
+
+.cardChampPosition {
+    width: 5vw;
+}
+
+.item {
+    width: 45px;
+    height: 45px;
+    margin: 0.1rem;
+    overflow: hidden;
+    display: inline-block;
+    padding: 1px;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+
+.itemSet {
+    width: 25%;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+
+
+.scoreboardImg {
+    padding-left: 0px;
+    width: 3vw;
+    margin-top: 5px;
+    margin-left: -0.5vw;
+    margin-right: -0.5vw;
+}
+
+.scoreboardExt>td {
+    padding: 0px;
+    font-size: 0.9rem;
 }

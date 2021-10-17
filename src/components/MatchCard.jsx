@@ -1,11 +1,12 @@
 import React from "react";
 import Fetches from '../Fetches'
-import { useState, useEffect, useRef } from "react";
-import { OverlayTrigger, Button, Tooltip } from "react-bootstrap";
+import { useState, useEffect } from "react";
+import { Table } from 'react-bootstrap'
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import './MatchCard.css'
 
 
-export default function MatchCard({match, key, user, rank}) {
+export default function MatchCard({match, key, user}) {
 
     const [matchInfo, setMatchInfo] = useState(undefined)
     
@@ -16,6 +17,9 @@ export default function MatchCard({match, key, user, rank}) {
             console.log('Fetched Match Details: ', data)
             setMatchInfo(data)
             })
+        .catch(error => {
+            console.error('Fetching Error: ', error)
+        })
     },[])
 
     function comparedPositions(a, b) {
@@ -30,7 +34,7 @@ export default function MatchCard({match, key, user, rank}) {
 
     const onClickHandler = (e) => {
         const hiddenElement = e.currentTarget.nextSibling;
-        hiddenElement.className.indexOf("collapse show") > -1 ? hiddenElement.classList.remove("show") : hiddenElement.classList.add("show");
+        hiddenElement.className.indexOf("collapse table show") > -1 ? hiddenElement.classList.remove("show") : hiddenElement.classList.add("show");
     };
     
     const makeMatchCard = (input) => {
@@ -38,56 +42,6 @@ export default function MatchCard({match, key, user, rank}) {
         const matchId = input.metadata.matchId
 
         //Javascript MAP/Object
-        let queue = ((input) => {
-            if (input === 420) {
-                return 'Ranked Solo/Duo'
-            }
-            else if (input === 400) {
-                return 'Draft Pick'
-            }
-            else if (input === 325) {
-                return 'All Random Game'
-            }
-            else if (input === 430) {
-                return 'Blind Pick'
-            }
-            else if (input === 440) {
-                return 'Ranked Flex'
-            }
-            else if (input === 450) {
-                return '5v5 ARAM'
-            }
-            else if (input === 900) {
-                return 'URF'
-            }
-            else if (input === 700) {
-                return 'Clash Tournament'
-            }
-            else if (input === 830) {
-                return 'Intro Bots'
-            }
-            else if (input === 840) {
-                return 'Beginner Bots'
-            }
-            else if (input === 850) {
-                return 'Intermediate Bots'
-            }
-            else {
-                return 'Unknown'
-            }
-        })(data.queueId)
-
-        let map = ((input) => {
-            if (input === 11) {
-                return `Summoner's Rift`
-            }
-            else if (input === 12) {
-                return 'Howling Abyss'
-            }
-            else {
-                return 'Depreciated Map'
-            }
-        })(data.mapId)
         
         const matchDate = () => {
             const date = new Date(data.gameStartTimestamp)
@@ -123,7 +77,7 @@ export default function MatchCard({match, key, user, rank}) {
             blueTeam.kills = blueTeam.reduce((acc, val) => {
                 return acc + val.kills
             }, 0)
-            redTeam.kills = blueTeam.reduce((acc, val) => {
+            redTeam.kills = redTeam.reduce((acc, val) => {
                 return acc + val.kills
             }, 0)
             return {blueTeam, redTeam}
@@ -134,7 +88,11 @@ export default function MatchCard({match, key, user, rank}) {
         })
 
         console.log('Current Player: ', curPlayer)
-        const playerGold = curPlayer.goldEarned
+
+        const playerGold = (input) => { 
+            return input.goldEarned
+        }
+        
         const playerGoldPercent = (() => {
             if (curPlayer.teamId === 100) {
                 let teamGold = teams.blueTeam.reduce((acc, val) => {
@@ -150,30 +108,53 @@ export default function MatchCard({match, key, user, rank}) {
             }
         })()
 
-        const cardChampIcon = () => {
-            let link = `https://ddragon.leagueoflegends.com/cdn/11.19.1/img/champion/${curPlayer.championName}.png`
-            return (
-                <img src={link} alt="champIcon"/>
-            )
+        const cardChampIcon = (input) => {
+            let link = `https://ddragon.leagueoflegends.com/cdn/11.19.1/img/champion/${input.championName}.png`
+            return link
+                
         }
 
-        const cardChampPosition = () => {
-            let link = `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ranked/positions/`
+        
+
+        const cardChampPosition = (input) => {
+            let position = (input.teamPosition).toLowerCase()
+            let img = `https://raw.communitydragon.org/pbe/plugins/rcp-fe-lol-static-assets/global/default/svg/position-${position}.svg`
+            return img
         }
-        const playerKDA = ((input) => {
+        const playerKDA = (input) => {
             return `${input.kills}/${input.deaths}/${input.assists}`
-        })(curPlayer)
+        }
 
-        const curPlayerKP = ((input) => {
+        const playerKp = ((input) => {
             let team;
-            if (input.teamId === 100) {team = teams.blueTeam}
-            else {team = teams.redTeam}
+            if (input.teamId === 100) {
+                team = teams.blueTeam
+            }
+            else {
+                team = teams.redTeam
+            }
             let kp = (input.kills + input.assists) / team.kills * 100
             kp = kp.toFixed(2) + '%'
             return kp
         })(curPlayer)
 
-        const curPlayerStats = () => {
+        const playerItems = (input) => {
+            let items = []
+            let item;
+            for (let i = 0; i < 6; i++) {
+                item = ("item" + i).toString()
+                items.push(input[item])
+            }
+            return (
+            <td className="itemSet">
+                {items.map(item => {
+                    return <img className='item' src={`./items/${item}.png`} alt='item'/>
+                })}
+            </td>
+            )
+        }
+
+        const mouseovers = () => {
             return (
                 <td>
                 <OverlayTrigger
@@ -181,9 +162,9 @@ export default function MatchCard({match, key, user, rank}) {
                     placement={"top"}
                     overlay={
                         <Tooltip id={`tooltip-${matchId + 'kda'}`}>
-                            <div className='playerKp'>You participated in {curPlayerKP} of the action!</div>
+                            <div className='playerKp'>You participated in {playerKp} of the action!</div>
                         </Tooltip>}>
-                    <div className='playerKda'>{playerKDA}</div>
+                    <div className='playerKda'>{playerKDA(curPlayer)}</div>
                 </OverlayTrigger>
                 <OverlayTrigger
                     key={matchId + 'gold'}
@@ -192,7 +173,7 @@ export default function MatchCard({match, key, user, rank}) {
                         <Tooltip id={`tooltip-${matchId + 'gold'}`}>
                             <div className='playerGoldPercent'>You had {playerGoldPercent} of all the team's gold.</div>
                         </Tooltip>}>
-                    <div className='playerGold'>{playerGold}g</div>
+                    <div className='playerGold'>{playerGold(curPlayer)}g</div>
                 </OverlayTrigger>
                 </td>
             )
@@ -201,36 +182,60 @@ export default function MatchCard({match, key, user, rank}) {
         let topDeets = () => {
             return (
             <tr onClick={onClickHandler} className={curPlayer.win ? 'matchCardWin' : 'matchCardLoss'}>
-                <td className='cardChampIcon'>{cardChampIcon()}</td>
+                <td className='cardChampIcon'>
+                    <img src={cardChampIcon(curPlayer)} alt="champIcon"/> 
+                </td>
                 <td>
                     <div className='matchIdInfo text-muted'>{matchId}</div>
                     <div className='dateInfo'>{matchDate()}</div>
                     <div className='timeInfo'>{matchLength}</div>
                 </td>
-                {curPlayerStats()}
-                <td>$150.00</td>
-                <td/>
-                <td className="matchQueueType">
-                    <div>{queue}</div>
-                    <div className="text-muted">{map}</div>
+                {mouseovers()}
+                <td>
+                    <img className='cardChampPosition' src={cardChampPosition(curPlayer)} alt="position"/>
                 </td>
+                <td/>
+                {playerItems(curPlayer)}
             </tr>
         )}
         let expandedDeets = () => {
-        let deets = {
-            matchId: matchId,
-            length: matchLength,
-            type: [queue, map],
-            players: teams,
-        }
-            return (
-                <tr className="collapse">
-                    <div>
-                        Info
-                    </div>
-                </tr>
-            )
+            const scoreBoard = (input) => {
+                const boardTd = (input) => {
+                    return (
+                        <>
+                        <img className="scoreboardImg" src={cardChampIcon(input)} alt="champPic"/>
+                        <td>{input.summonerName}</td>
+                        <td>{playerKDA(input)}</td>
+                        </>
+                    )
+                }
+                const boardTd2 = (input) => {
+                    return (
+                        <>
+                        <td>{playerKDA(input)}</td>
+                        <td>{input.summonerName}</td>
+                        <img className="scoreboardImg" src={cardChampIcon(input)} alt="champPic" />
+                        </>
+                    )
+                }
+                let board = input.blueTeam.map((value, index) => {
+                    return (
+                        <tr className="scoreboardExt">
+                            {boardTd(value)}
+                            <img className="scoreBoardPos" src={cardChampPosition(value)} alt="position" />
+                            {boardTd2(input.redTeam[index])}
+                        </tr>
+                    )
+                })
+                console.log(board)
+                return board
+            }
 
+            return (
+                <Table className="collapse">
+                    {scoreBoard(teams)}
+                </Table>
+            )
         }
 
         return (

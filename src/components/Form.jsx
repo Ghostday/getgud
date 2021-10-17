@@ -11,6 +11,8 @@ class searchForm extends React.Component {
 
     }
 
+
+
     handleChange = (event) => {
         const name = event.target.name;
         this.setState({
@@ -19,7 +21,6 @@ class searchForm extends React.Component {
     }
 
     handleSubmit = (event) => {
-        console.log('handleSubmit()', event)
         event.preventDefault();
         const { getData } = this.props;
         getData(this.state.server, this.state.sumName);
@@ -46,6 +47,8 @@ class searchForm extends React.Component {
             <input name="sumName" type="text" placeholder="Summoner Name" onChange={this.handleChange} />
             <input type="submit" value="Submit" />
         </form>
+
+
         );
     }
 }

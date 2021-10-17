@@ -60,25 +60,23 @@ p {
 
 .table {
   border-top: 0px;
-  display: block;
-  max-width: max-content;
+  display: inline-table;
+  max-width: 75vh;
   color: white;
   border-radius: 20px;
   border-spacing: 0px;
   border-bottom-width: 0px;
-  margin: 5px;
-  width: 70%;
 }
 
 .table>:not(caption)>*>* {
   border-bottom-width: 0px;
-  padding: 0.8vh;
+  padding: 0.1vh;
 }
 
 .table>:not(:first-child) {
   border-top: 0px;
   margin: 5px;
-  width: 100%;
+
 }
 
 .table>:first-child {
@@ -103,6 +101,3 @@ td {
   vertical-align: middle;
 }
 
-tr {
-  width: 800px;
-}
