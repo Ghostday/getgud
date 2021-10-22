@@ -9,6 +9,8 @@ import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import { Nav, Navbar, NavbarBrand } from 'react-bootstrap';
 import About from './components/About';
 
+
+// Can change the port here.
 const fetchUrl = 'http://localhost:4000'
 
 let postInfo = (r, u) => {

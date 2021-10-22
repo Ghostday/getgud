@@ -1,4 +1,4 @@
 
-const APIKey = 'RGAPI-63f8b7c3-603f-4e8d-a6d8-df188118a52b';
+const APIKey = 'RGAPI-cf8f2732-45b8-460f-ad20-1b0b6e705c90';
 
 export default APIKey
